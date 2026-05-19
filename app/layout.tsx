@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import Nav from "@/components/global/Nav";
 import Footer from "@/components/global/Footer";
+import ScrollToTopOnRouteChange from "@/components/global/ScrollToTopOnRouteChange";
 import ScrollTriggerRefresh from "@/components/global/ScrollTriggerRefresh";
 import StructuredData from "@/components/global/StructuredData";
 import "./globals.css";
@@ -77,6 +78,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <ScrollToTopOnRouteChange />
         <ScrollTriggerRefresh />
         <Nav />
         <main id="main">{children}</main>
