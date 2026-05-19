@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Named palette */
+  --color-fog: #F5EFE3;
+  --color-evergreen: #1F2E25;
+  --color-sage: #94A48E;
+  --color-ochre: #B98839;
+  --color-clay: #A55E3F;
+  --color-ochre-text: #3D2A0E;
+  --color-clay-text: #3D1E10;
+
+  /* Fonts (mapped to the next/font CSS variables) */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-hanken);
+  --font-mono: var(--font-mono);
+
+  /* Fluid type scale */
+  --text-hero: clamp(40px, 6vw, 80px);
+  --text-section: clamp(28px, 4vw, 48px);
+  --text-manifesto: clamp(28px, 3vw, 44px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-fog);
+  color: var(--color-evergreen);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Paper grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url('/textures/paper-grain.svg');
+  background-size: 240px 240px;
+  background-repeat: repeat;
+}
+
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 0.8;
+  float: left;
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+  color: var(--color-evergreen);
+  font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
